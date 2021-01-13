@@ -103,11 +103,11 @@ export default class Test extends Component {
     renderHeader() {
         return(
             <div className = 'calendar-header'>
-                <button onClick = {this.preMonth} className = "btn btn-primary btn-sm">❮</button>
+                <button onClick = {this.preMonth} className = "button">❮</button>
                 <div className = 'calendar-head'>
                     {this.state.currentYear}-{this.state.currentMonth}
                 </div>
-                <button onClick = {this.nextMonth} className = "btn btn-primary btn-sm">❯</button>
+                <button onClick = {this.nextMonth} className = "button">❯</button>
             </div>
         )
     }
