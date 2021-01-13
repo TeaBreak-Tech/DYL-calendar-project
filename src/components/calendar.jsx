@@ -36,7 +36,7 @@ export default class Test extends Component {
     getMonthFirstDate(date) {
         let nowYear = date.getFullYear();
         let nowMonth = date.getMonth()+1;
-        return  `${nowYear}-${nowMonth}-01`
+        return  `${nowYear}/${nowMonth}/01`
     }
     setDate
 
@@ -46,19 +46,19 @@ export default class Test extends Component {
         let nowMonth = date.getMonth()+1;
         let day = date.getDate();
         day = day < 10 ? '0' + day : day;
-        return  `${nowYear}-${nowMonth}-${day}`
+        return  `${nowYear}/${nowMonth}/${day}`
     }
 
     //Last month
     preMonth() {
-        let date = new Date(`${this.state.currentYear}-${this.state.currentMonth}-${this.state.currentDay}`)
+        let date = new Date(`${this.state.currentYear}/${this.state.currentMonth}/${this.state.currentDay}`)
         let preMonthFirstDate = new Date(this.getMonthFirstDate(new Date(date.setDate(0))));
         this.initCalendar(preMonthFirstDate)
     }
 
     //Next month
     nextMonth() {
-        let date = new Date(`${this.state.currentYear}-${this.state.currentMonth}-${this.state.currentDay}`)
+        let date = new Date(`${this.state.currentYear}/${this.state.currentMonth}/${this.state.currentDay}`)
         let nextMonthFirstDate = new Date(this.getMonthFirstDate(new Date(date.setDate(33))));
         this.initCalendar(nextMonthFirstDate)
     }
@@ -122,7 +122,17 @@ export default class Test extends Component {
                 </div>
                 <div className = 'day-container'>
                     {this.state.dayList.map( (dayObject, index) => {
-                        return <p key = {index} className = {`day ${dayObject.className}`}>{dayObject.day}</p>})}
+                        return(
+                            <div 
+                                className = {`day ${dayObject.className}`}
+                                onClick={()=>{
+                                    this.props.setDayOfMonth(dayObject.day)
+                                }}
+                            >
+                                <p key = {index} >{dayObject.day}</p>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         )
